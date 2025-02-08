@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import reactLogo from "../assets/react.svg";
-import viteLogo from "/vite.svg";
+import Card from "./Card.jsx"
 import "../styles/App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(5);
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   async function getRandomPokemon() {
@@ -14,19 +13,24 @@ function App() {
         throw new Error("response status: " + response.status);
       }
       const json = await response.json();
-      console.log(json);
       return json;
     } catch (error) {
       console.error(error.message);
       return null
     }
   }
+  async function generatePokemons(){
+      const promises = Array.from({length: count}, getRandomPokemon)
+      const results = await Promise.all(promises)
+      setPokemons(results.filter(pokemon => pokemon !== null))
+  }
   useEffect(() => {
     console.log(pokemons);
   }, [pokemons]);
   return (
     <>
-      <button onClick={() => getRandomPokemon()}></button>
+      {pokemons.map(pokemon => <Card pokemonName={pokemon.species.name} spriteURL={pokemon.sprites.back_default} />)}
+      <button onClick={() => generatePokemons()}>Go!</button>
     </>
   );
 }
