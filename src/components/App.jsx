@@ -3,12 +3,11 @@ import Card from "./Card.jsx"
 import "../styles/App.css";
 
 function App() {
-  const [count, setCount] = useState(5);
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
-  async function getRandomPokemon() {
+  async function getPokemonWithID(id) {
     try {
-      const response = await fetch(api + Math.floor(Math.random() * 150));
+      const response = await fetch(api + id);
       if (!response.ok) {
         throw new Error("response status: " + response.status);
       }
@@ -19,8 +18,15 @@ function App() {
       return null
     }
   }
-  async function generatePokemons(){
-      const promises = Array.from({length: count}, getRandomPokemon)
+  async function generatePokemons(count,rangeStart,rangeEnd){
+      const idArray = Array.from({length: rangeEnd - rangeStart + 1}, (_, i) => i+rangeStart)
+      //Fisher-Yates Shuffle
+      for (let i = idArray.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i+1));
+        [idArray[i], idArray[j]] = [idArray[j], idArray[i]];
+      }
+      let promises = idArray.slice(0,count);
+      promises = promises.map((num) => getPokemonWithID(num));
       const results = await Promise.all(promises)
       setPokemons(results.filter(pokemon => pokemon !== null))
   }
@@ -30,7 +36,7 @@ function App() {
   return (
     <>
       {pokemons.map(pokemon => <Card pokemonName={pokemon.species.name} spriteURL={pokemon.sprites.front_default} />)}
-      <button onClick={() => generatePokemons()}>Go!</button>
+      <button onClick={() => generatePokemons(5, 1, 100)}>Go!</button>
     </>
   );
 }
