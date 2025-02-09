@@ -29,7 +29,7 @@ function App() {
   }, [pokemons]);
   return (
     <>
-      {pokemons.map(pokemon => <Card pokemonName={pokemon.species.name} spriteURL={pokemon.sprites.back_default} />)}
+      {pokemons.map(pokemon => <Card pokemonName={pokemon.species.name} spriteURL={pokemon.sprites.front_default} />)}
       <button onClick={() => generatePokemons()}>Go!</button>
     </>
   );
