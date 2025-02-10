@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 
-function CardContainer() {
+function CardContainer({ difficulty = 0, generation = 1 }) {
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
+  async function generatePokemons(count, rangeStart, rangeEnd) {
+    let idArray = Array.from(
+      { length: rangeEnd - rangeStart + 1 },
+      (_, i) => i + rangeStart
+    );
+    idArray = shuffle(idArray);
+    let promises = idArray.slice(0, count);
+    promises = promises.map((num) => getPokemonWithID(num));
+    const results = await Promise.all(promises);
+    setPokemons(results.filter((pokemon) => pokemon !== null));
+  }
   async function getPokemonWithID(id) {
-    async function generatePokemons(count, rangeStart, rangeEnd) {
-      let idArray = Array.from(
-        { length: rangeEnd - rangeStart + 1 },
-        (_, i) => i + rangeStart
-      );
-      idArray = shuffle(idArray);
-      let promises = idArray.slice(0, count);
-      promises = promises.map((num) => getPokemonWithID(num));
-      const results = await Promise.all(promises);
-      setPokemons(results.filter((pokemon) => pokemon !== null));
-    }
     try {
       const response = await fetch(api + id);
       if (!response.ok) {

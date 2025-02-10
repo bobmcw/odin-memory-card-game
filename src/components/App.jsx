@@ -1,9 +1,14 @@
+import CardContainer from "./CardContainer";
 import "../styles/App.css";
+
+function startGame(){
+
+}
 
 function App() {
   return (
     <>
-      <button onClick={() => generatePokemons(5, 1, 100)}>Go!</button>
+      <button onClick={() => startGame}>Go!</button>
     </>
   );
 }
