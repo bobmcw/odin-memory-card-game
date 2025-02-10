@@ -36,6 +36,10 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     }
     return arr;
   }
+  useEffect(() => {
+    //make this difficulty/generation dependent
+    generatePokemons(10,1,100)
+  },[])
   return (
     <div className="cardContainer">
       {pokemons.map((pokemon) => (
