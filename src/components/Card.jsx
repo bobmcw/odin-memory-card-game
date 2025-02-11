@@ -1,6 +1,6 @@
-function Card({pokemonName, spriteURL}){
+function Card({pokemonName, spriteURL, handleClick, pokemonId}){
     return(
-        <div className="card">
+        <div className="card" onClick={() => handleClick(pokemonId)}>
             <img src={spriteURL} alt={pokemonName} />
             <p>{pokemonName}</p>
         </div>

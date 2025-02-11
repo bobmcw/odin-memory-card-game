@@ -47,6 +47,15 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
       setDraw([pokemons[0]].concat(guessed.slice(0,count-1)))
     }
   }
+  function handleClick(id){
+    const index = pokemons.findIndex(pokemon => pokemon.id == id);
+    console.log(id)
+    console.log(index)
+    setGuessed([...guessed,pokemons[index]])
+    setPokemons(pokemons.filter(pokemon => pokemon.id !== id))
+    console.log(guessed)
+    console.log(pokemons)
+  }
   function shuffle(arr) {
     //Fisher-Yates Shuffle
     for (let i = arr.length - 1; i > 0; i--) {
@@ -68,6 +77,8 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
         <Card
           pokemonName={pokemon.species.name}
           spriteURL={pokemon.sprites.front_default}
+          handleClick={handleClick}
+          pokemonId={pokemon.id}
         />
       ))}
     </div>
