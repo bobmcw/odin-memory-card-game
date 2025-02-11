@@ -4,6 +4,8 @@ import Card from "./Card.jsx";
 function CardContainer({ difficulty = 0, generation = 1 }) {
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
+  const [guessed, setGuessed] = useState([]);
+  const [draw,setDraw] = useState([])
   async function generatePokemons(count, rangeStart, rangeEnd) {
     let idArray = Array.from(
       { length: rangeEnd - rangeStart + 1 },
@@ -28,6 +30,23 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
       return null;
     }
   }
+  function drawCards(count) {
+    if (guessed.length == 0) {
+      //if all no cards guessed already all cards will be new
+      setDraw([...pokemons.slice(0,count)])
+    } else if (guessed.length < count) {
+      //if guessed cards are less than total number of cards to draw take all of them and add some new ones
+      setDraw([...guessed].concat(pokemons.slice(0,count-guessed.length)))
+    } else {
+      //if there are enough guessed cards to draw the selection, pick one new one are fill the rest with guessed cards
+      toDraw = pokemons[0];
+      //TODO change it to randomly select between new and already guessed cards
+      for (let i = 0; i < count - 1; i++) {
+        toDraw.push(guessed[i]);
+      }
+      setDraw([pokemons[0]].concat(guessed.slice(0,count-1)))
+    }
+  }
   function shuffle(arr) {
     //Fisher-Yates Shuffle
     for (let i = arr.length - 1; i > 0; i--) {
@@ -36,13 +55,16 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     }
     return arr;
   }
+  //on render
   useEffect(() => {
     //make this difficulty/generation dependent
-    generatePokemons(10,1,100)
-  },[])
+    generatePokemons(10, 1, 100);
+  }, []);
+  //on guess
+  useEffect(() => {drawCards(5)},[pokemons])
   return (
     <div className="cardContainer">
-      {pokemons.map((pokemon) => (
+      {draw.map((pokemon) => (
         <Card
           pokemonName={pokemon.species.name}
           spriteURL={pokemon.sprites.front_default}
