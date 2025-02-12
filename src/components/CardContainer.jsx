@@ -48,13 +48,8 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     }
   }
   function handleClick(id){
-    const index = pokemons.findIndex(pokemon => pokemon.id == id);
-    console.log(id)
-    console.log(index)
-    setGuessed([...guessed,pokemons[index]])
+    setGuessed(previousGuessed => [...previousGuessed, pokemons.find(pokemon => pokemon.id === id)])
     setPokemons(pokemons.filter(pokemon => pokemon.id !== id))
-    console.log(guessed)
-    console.log(pokemons)
   }
   function shuffle(arr) {
     //Fisher-Yates Shuffle
@@ -70,7 +65,11 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     generatePokemons(10, 1, 100);
   }, []);
   //on guess
-  useEffect(() => {drawCards(5)},[pokemons])
+  useEffect(() => {
+    drawCards(5)
+    console.log(pokemons)
+    console.log(guessed)
+},[pokemons])
   return (
     <div className="cardContainer">
       {draw.map((pokemon) => (
