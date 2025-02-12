@@ -40,15 +40,18 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     } else {
       //if there are enough guessed cards to draw the selection, pick one new one are fill the rest with guessed cards
       //TODO change it to randomly select between new and already guessed cards
-      for (let i = 0; i < count - 1; i++) {
-        toDraw.push(guessed[i]);
-      }
+      //TODO change it so the pokemon to guess is not always first
       setDraw([pokemons[0]].concat(guessed.slice(0,count-1)))
     }
   }
   function handleClick(id){
-    setGuessed(previousGuessed => [...previousGuessed, pokemons.find(pokemon => pokemon.id === id)])
-    setPokemons(pokemons.filter(pokemon => pokemon.id !== id))
+    if(pokemons.find(pokemon => pokemon.id === id) === undefined){
+        console.log("game over!")
+    }
+    else{
+        setGuessed(previousGuessed => [...previousGuessed, pokemons.find(pokemon => pokemon.id === id)])
+        setPokemons(pokemons.filter(pokemon => pokemon.id !== id))
+    }
   }
   function shuffle(arr) {
     //Fisher-Yates Shuffle
@@ -70,7 +73,8 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     console.log(pokemons)
     console.log(guessed)
 },[pokemons])
-  return (
+  if(pokemons.length !== 0){
+    return (
     <div className="cardContainer">
       {draw.map((pokemon) => (
         <Card
@@ -82,5 +86,11 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
       ))}
     </div>
   );
+}
+else{
+    return(
+        <h1>You won!</h1>
+    )
+}
 }
 export default CardContainer;
