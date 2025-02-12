@@ -39,7 +39,6 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
       setDraw([...guessed].concat(pokemons.slice(0,count-guessed.length)))
     } else {
       //if there are enough guessed cards to draw the selection, pick one new one are fill the rest with guessed cards
-      toDraw = pokemons[0];
       //TODO change it to randomly select between new and already guessed cards
       for (let i = 0; i < count - 1; i++) {
         toDraw.push(guessed[i]);
@@ -66,6 +65,7 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
   }, []);
   //on guess
   useEffect(() => {
+    setPokemons(shuffle(pokemons))
     drawCards(5)
     console.log(pokemons)
     console.log(guessed)
