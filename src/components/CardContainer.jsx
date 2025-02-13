@@ -36,12 +36,12 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
       setDraw([...pokemons.slice(0,count)])
     } else if (guessed.length < count) {
       //if guessed cards are less than total number of cards to draw take all of them and add some new ones
-      setDraw([...guessed].concat(pokemons.slice(0,count-guessed.length)))
+      setDraw(shuffle([...guessed].concat(pokemons.slice(0,count-guessed.length))))
     } else {
       //if there are enough guessed cards to draw the selection, pick one new one are fill the rest with guessed cards
       //TODO change it to randomly select between new and already guessed cards
       //TODO change it so the pokemon to guess is not always first
-      setDraw([pokemons[0]].concat(guessed.slice(0,count-1)))
+      setDraw(shuffle([pokemons[0]].concat(guessed.slice(0,count-1))))
     }
   }
   function handleClick(id){
