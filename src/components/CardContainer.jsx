@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 
-function CardContainer({ difficulty = 0, generation = 1 }) {
+function CardContainer({ difficulty = 0, generation = 1 , setGame}) {
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   const [guessed, setGuessed] = useState([]);
   const [draw, setDraw] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
   async function generatePokemons(count, rangeStart, rangeEnd) {
     let idArray = Array.from(
       { length: rangeEnd - rangeStart + 1 },
@@ -49,6 +50,7 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
   function handleClick(id) {
     if (pokemons.find((pokemon) => pokemon.id === id) === undefined) {
       console.log("game over!");
+      setGameOver(true);
     } else {
       setGuessed((previousGuessed) => [
         ...previousGuessed,
@@ -77,7 +79,15 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
     console.log(pokemons);
     console.log(guessed);
   }, [pokemons]);
-  if (pokemons.length !== 0) {
+  if(gameOver) {
+    return(
+        <>
+            <h1>Game over</h1>
+            <button onClick={() => setGame(false)}>play again?</button>
+        </>
+    )
+  }
+  else if (pokemons.length !== 0) {
     return (
       <div className="cardContainer">
         {draw.map((pokemon) => (

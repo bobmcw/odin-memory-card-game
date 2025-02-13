@@ -8,7 +8,7 @@ function App() {
   const [game,setGame] = useState(false);
   return (
     <>
-      {game ? <CardContainer /> : <Menu startGame={setGame}/>}
+      {game ? <CardContainer setGame={setGame} /> : <Menu startGame={setGame}/>}
     </>
   );
 }
