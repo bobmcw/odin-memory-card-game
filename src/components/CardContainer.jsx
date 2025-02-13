@@ -41,9 +41,8 @@ function CardContainer({ difficulty = 0, generation = 1 }) {
         shuffle([...guessed].concat(pokemons.slice(0, count - guessed.length)))
       );
     } else {
-      //if there are enough guessed cards to draw the selection, pick one new one are fill the rest with guessed cards
+      //if there are enough guessed cards to draw the selection, pick one new and fill the rest with guessed cards
       //TODO change it to randomly select between new and already guessed cards
-      //TODO change it so the pokemon to guess is not always first
       setDraw(shuffle([pokemons[0]].concat(guessed.slice(0, count - 1))));
     }
   }
