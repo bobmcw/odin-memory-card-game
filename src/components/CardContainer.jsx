@@ -70,14 +70,26 @@ function CardContainer({ difficulty = 0, generation = 1 , setGame}) {
   //on render
   useEffect(() => {
     //make this difficulty/generation dependent
-    generatePokemons(10, 1, 100).then(() => setLoaded(true))
+    let ignore = false
+    if(!ignore){
+        generatePokemons(10, 1, 100).then(() => setLoaded(true))
+    }
+    return () => {
+        ignore = true
+    };
   }, []);
   //on guess
   useEffect(() => {
-    setPokemons(shuffle(pokemons));
-    drawCards(5);
-    console.log(pokemons);
-    console.log(guessed);
+    let ignore = false;
+    if(!ignore){
+        setPokemons(shuffle(pokemons));
+        drawCards(5);
+        console.log(pokemons);
+        console.log(guessed);
+    }
+    return () => {
+        ignore = true;
+    }
   }, [pokemons]);
   if(gameOver) {
     return(
