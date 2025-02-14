@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 
-function CardContainer({ difficulty = 0, generation = 1 , setGame}) {
+function CardContainer({ difficulty = 0, generation = 1, setGame }) {
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   const [guessed, setGuessed] = useState([]);
@@ -70,36 +70,31 @@ function CardContainer({ difficulty = 0, generation = 1 , setGame}) {
   //on render
   useEffect(() => {
     //make this difficulty/generation dependent
-    let ignore = false
-    if(!ignore){
-        generatePokemons(10, 1, 100).then(() => setLoaded(true))
-    }
+    let ignore = false;
+    generatePokemons(10, 1, 100).then(() => {
+      if (!ignore) {
+        setLoaded(true);
+      }
+    });
     return () => {
-        ignore = true
+      ignore = true;
     };
   }, []);
   //on guess
   useEffect(() => {
-    let ignore = false;
-    if(!ignore){
-        setPokemons(shuffle(pokemons));
-        drawCards(5);
-        console.log(pokemons);
-        console.log(guessed);
-    }
-    return () => {
-        ignore = true;
-    }
+    setPokemons(shuffle(pokemons));
+    drawCards(5);
+    console.log(pokemons);
+    console.log(guessed);
   }, [pokemons]);
-  if(gameOver) {
-    return(
-        <>
-            <h1>Game over</h1>
-            <button onClick={() => setGame(false)}>play again?</button>
-        </>
-    )
-  }
-  else if (pokemons.length !== 0) {
+  if (gameOver) {
+    return (
+      <>
+        <h1>Game over</h1>
+        <button onClick={() => setGame(false)}>play again?</button>
+      </>
+    );
+  } else if (pokemons.length !== 0) {
     return (
       <div className="cardContainer">
         {draw.map((pokemon) => (
