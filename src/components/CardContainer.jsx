@@ -103,6 +103,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
             spriteURL={pokemon.sprites.front_default}
             handleClick={handleClick}
             pokemonId={pokemon.id}
+            key={pokemon.id}
           />
         ))}
       </div>
