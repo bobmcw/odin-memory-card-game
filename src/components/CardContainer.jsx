@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 
 function CardContainer({ difficulty = 0, generation = 1, setGame }) {
+  const difficultyTable = {
+    0: 5,
+    1: 10,
+    2: 20,
+    3: 50
+  }
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   const [guessed, setGuessed] = useState([]);
@@ -77,7 +83,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
   useEffect(() => {
     //make this difficulty/generation dependent
     let ignore = false;
-    generatePokemons(10, 1, 100).then(() => {
+    generatePokemons(difficultyTable[difficulty], 1, 100).then(() => {
       if (!ignore) {
         setLoaded(true);
       }
@@ -106,6 +112,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
   } else if (pokemons.length !== 0) {
     return (
       <div className="cardContainer">
+        <h1>score: {guessed.length} / {difficultyTable[difficulty]}</h1>
         {draw.map((pokemon) => (
           <Card
             pokemonName={pokemon.species.name}
