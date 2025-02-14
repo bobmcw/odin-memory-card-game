@@ -59,6 +59,12 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
       setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
     }
   }
+  function preloadImages() {
+    pokemons.forEach((pokemon) => {
+      const img = new Image();
+      img.src = pokemon.sprites.front_default;
+    });
+  }
   function shuffle(arr) {
     //Fisher-Yates Shuffle
     for (let i = arr.length - 1; i > 0; i--) {
@@ -87,6 +93,9 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
     console.log(pokemons);
     console.log(guessed);
   }, [pokemons]);
+  useEffect(() => {
+    preloadImages();
+  },[loaded])
   if (gameOver) {
     return (
       <>
