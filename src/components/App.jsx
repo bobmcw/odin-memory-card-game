@@ -5,10 +5,16 @@ import { useState } from "react";
 function App() {
   const [dif, setDif] = useState(0);
   const [gen, setGen] = useState(1);
-  const [game,setGame] = useState(false);
+  const [game, setGame] = useState(false);
+  const [best, setBest] = useState(0);
   return (
     <>
-      {game ? <CardContainer setGame={setGame} difficulty={dif} generation={gen} /> : <Menu startGame={setGame} setDif={setDif} setGen={setGen}/>}
+    <p>best score: {best}</p>
+      {game ? (
+        <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} />
+      ) : (
+        <Menu startGame={setGame} setDif={setDif} setGen={setGen} />
+      )}
     </>
   );
 }

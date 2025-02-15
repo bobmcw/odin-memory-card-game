@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 
-function CardContainer({ difficulty = 0, generation = 1, setGame }) {
+function CardContainer({ difficulty = 0, generation = 1, setGame, setBest }) {
   const difficultyTable = {
     0: 5,
     1: 10,
@@ -103,6 +103,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
     preloadImages();
   },[loaded])
   if (gameOver) {
+    setBest(guessed.length)
     return (
       <>
         <h1>Game over</h1>
@@ -125,6 +126,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame }) {
       </div>
     );
   } else if (loaded) {
+    setBest(guessed.length)
     return <h1>You won!</h1>;
   } else {
     return <h1>Loading...</h1>;
