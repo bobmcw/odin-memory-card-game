@@ -6,8 +6,8 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest }) {
     0: 5,
     1: 10,
     2: 20,
-    3: 50
-  }
+    3: 50,
+  };
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   const [guessed, setGuessed] = useState([]);
@@ -103,9 +103,12 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest }) {
   }, [pokemons]);
   useEffect(() => {
     preloadImages();
-  },[loaded])
+  }, [loaded]);
+  useEffect(() => {
+    setBest(guessed.length);
+  }, [gameOver]);
+
   if (gameOver) {
-    setBest(guessed.length)
     return (
       <>
         <h1>Game over</h1>
@@ -115,7 +118,9 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest }) {
   } else if (pokemons.length !== 0) {
     return (
       <div className="cardContainer">
-        <h1>score: {guessed.length} / {difficultyTable[difficulty]}</h1>
+        <h1>
+          score: {guessed.length} / {difficultyTable[difficulty]}
+        </h1>
         {draw.map((pokemon) => (
           <Card
             pokemonName={pokemon.species.name}
@@ -128,7 +133,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest }) {
       </div>
     );
   } else if (loaded) {
-    setBest(guessed.length)
+    setBest(guessed.length);
     return <h1>You won!</h1>;
   } else {
     return <h1>Loading...</h1>;
