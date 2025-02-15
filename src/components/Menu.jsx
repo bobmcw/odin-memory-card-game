@@ -1,4 +1,4 @@
-function Menu({startGame}) {
+function Menu({startGame, setGen, setDif}) {
   return (
     <div className="menu">
       <div className="selectItem">
