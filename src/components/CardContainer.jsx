@@ -50,7 +50,9 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest }) {
     } else {
       //if there are enough guessed cards to draw the selection, pick one new and fill the rest with guessed cards
       //TODO change it to randomly select between new and already guessed cards
-      setDraw(shuffle([pokemons[0]].concat(guessed.slice(0, count - 1))));
+      let all = [...new Set(guessed.concat(pokemons.slice(1)))];
+      all = shuffle(all);
+      setDraw(shuffle([pokemons[0]].concat(all.slice(0, count - 1))));
     }
   }
   function handleClick(id) {
