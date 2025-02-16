@@ -8,6 +8,44 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
     2: 20,
     3: 50,
   };
+  const generationTable = {
+    1: {
+      start: 1,
+      end: 151
+    },
+    2: {
+      start: 152,
+      end: 251
+    },
+    3: {
+      start: 252,
+      end: 386
+    },
+    4: {
+      start: 387,
+      end: 493
+    },
+    5: {
+      start: 494,
+      end: 649
+    },
+    6: {
+      start: 650,
+      end: 721
+    },
+    7: {
+      start: 722,
+      end: 809
+    },
+    8: {
+      start: 810,
+      end: 905
+    },
+    9: {
+      start: 906,
+      end: 1025
+    }
+  }
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   const [guessed, setGuessed] = useState([]);
@@ -85,7 +123,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
   useEffect(() => {
     //make this difficulty/generation dependent
     let ignore = false;
-    generatePokemons(difficultyTable[difficulty], 1, 100).then(() => {
+    generatePokemons(difficultyTable[difficulty], generationTable[generation].start, generationTable[generation].end).then(() => {
       if (!ignore) {
         setLoaded(true);
       }
