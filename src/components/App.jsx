@@ -1,6 +1,7 @@
 import CardContainer from "./CardContainer";
 import Menu from "./Menu";
 import "../styles/App.css";
+import background from "../assets/background.jpg"
 import { useEffect, useState } from "react";
 function App() {
   const [dif, setDif] = useState(0);
@@ -17,7 +18,7 @@ function App() {
     localStorage.setItem("bestScore", best)
   },[best])
   return (
-    <div className="game">
+    <div className="game" style={{backgroundImage: `url("${background}")`}}>
     <p className="bestScore">best score: {best}</p>
       {game ? (
         <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} bestScore={best} />
