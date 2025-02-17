@@ -1,6 +1,12 @@
 .cardContainer{
-    margin: 0 auto;
     display: grid;
+    width: 100%;
     max-width: 1200px;
-    grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(max(150px, 15%), 1fr));
+    gap: 10px;
+    margin-left: 10px;
+  width: 100%;
+}
+.scoreCounter {
+    text-align: center;
 }

@@ -17,14 +17,14 @@ function App() {
     localStorage.setItem("bestScore", best)
   },[best])
   return (
-    <>
+    <div className="game">
     <p className="bestScore">best score: {best}</p>
       {game ? (
         <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} bestScore={best} />
       ) : (
         <Menu startGame={setGame} setDif={setDif} setGen={setGen} />
       )}
-    </>
+    </div>
   );
 }
 

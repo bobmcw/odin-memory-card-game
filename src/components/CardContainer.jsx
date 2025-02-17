@@ -157,7 +157,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
   } else if (pokemons.length !== 0) {
     return (
         <>
-        <h1>
+        <h1 className="scoreCounter">
           score: {guessed.length} / {difficultyTable[difficulty]}
         </h1>
       <div className="cardContainer">
