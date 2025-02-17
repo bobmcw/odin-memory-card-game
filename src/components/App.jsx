@@ -18,7 +18,7 @@ function App() {
   },[best])
   return (
     <>
-    <p>best score: {best}</p>
+    <p className="bestScore">best score: {best}</p>
       {game ? (
         <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} bestScore={best} />
       ) : (
