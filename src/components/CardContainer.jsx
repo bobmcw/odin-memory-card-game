@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
+import "../styles/cardContainer.css";
 
 function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestScore }) {
   const difficultyTable = {
@@ -87,7 +88,6 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
       );
     } else {
       //if there are enough guessed cards to draw the selection, pick one new and fill the rest with guessed cards
-      //TODO change it to randomly select between new and already guessed cards
       let all = [...new Set(guessed.concat(pokemons.slice(1)))];
       all = shuffle(all);
       setDraw(shuffle([pokemons[0]].concat(all.slice(0, count - 1))));
@@ -121,7 +121,6 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
   }
   //on render
   useEffect(() => {
-    //make this difficulty/generation dependent
     let ignore = false;
     generatePokemons(difficultyTable[difficulty], generationTable[generation].start, generationTable[generation].end).then(() => {
       if (!ignore) {
@@ -157,10 +156,11 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
     );
   } else if (pokemons.length !== 0) {
     return (
-      <div className="cardContainer">
+        <>
         <h1>
           score: {guessed.length} / {difficultyTable[difficulty]}
         </h1>
+      <div className="cardContainer">
         {draw.map((pokemon) => (
           <Card
             pokemonName={pokemon.species.name}
@@ -171,6 +171,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
           />
         ))}
       </div>
+      </>
     );
   } else if (loaded) {
     return <h1>You won!</h1>;
