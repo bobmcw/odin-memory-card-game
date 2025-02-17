@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
-import "../styles/cardContainer.css";
+import "../styles/CardContainer.css";
 
 function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestScore }) {
   const difficultyTable = {
