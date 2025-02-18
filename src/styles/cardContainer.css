@@ -13,3 +13,11 @@
     font-weight: bold;
     text-align: center;
 }
+.playAgain{
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  color: navy;
+  text-shadow: 2px 2px 0 #FFD700;
+}

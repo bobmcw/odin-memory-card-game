@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 import "../styles/CardContainer.css";
 
-function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestScore }) {
+function CardContainer({
+  difficulty = 0,
+  generation = 1,
+  setGame,
+  setBest,
+  bestScore,
+}) {
   const difficultyTable = {
     0: 5,
     1: 10,
@@ -12,41 +18,41 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
   const generationTable = {
     1: {
       start: 1,
-      end: 151
+      end: 151,
     },
     2: {
       start: 152,
-      end: 251
+      end: 251,
     },
     3: {
       start: 252,
-      end: 386
+      end: 386,
     },
     4: {
       start: 387,
-      end: 493
+      end: 493,
     },
     5: {
       start: 494,
-      end: 649
+      end: 649,
     },
     6: {
       start: 650,
-      end: 721
+      end: 721,
     },
     7: {
       start: 722,
-      end: 809
+      end: 809,
     },
     8: {
       start: 810,
-      end: 905
+      end: 905,
     },
     9: {
       start: 906,
-      end: 1025
-    }
-  }
+      end: 1025,
+    },
+  };
   const api = "https://pokeapi.co/api/v2/pokemon/";
   const [pokemons, setPokemons] = useState([]);
   const [guessed, setGuessed] = useState([]);
@@ -122,7 +128,11 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
   //on render
   useEffect(() => {
     let ignore = false;
-    generatePokemons(difficultyTable[difficulty], generationTable[generation].start, generationTable[generation].end).then(() => {
+    generatePokemons(
+      difficultyTable[difficulty],
+      generationTable[generation].start,
+      generationTable[generation].end
+    ).then(() => {
       if (!ignore) {
         setLoaded(true);
       }
@@ -142,7 +152,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
     preloadImages();
   }, [loaded]);
   useEffect(() => {
-    if(guessed.length > bestScore){
+    if (guessed.length > bestScore) {
       setBest(guessed.length);
     }
   }, [gameOver]);
@@ -151,30 +161,35 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
     return (
       <>
         <h1 className="message">Game over</h1>
-        <button onClick={() => setGame(false)}>play again?</button>
+        <button className="playAgain" onClick={() => setGame(false)}>&gt; play again &lt;</button>
       </>
     );
   } else if (pokemons.length !== 0) {
     return (
-        <>
+      <>
         <h1 className="scoreCounter">
           score: {guessed.length} / {difficultyTable[difficulty]}
         </h1>
-      <div className="cardContainer">
-        {draw.map((pokemon) => (
-          <Card
-            pokemonName={pokemon.species.name}
-            spriteURL={pokemon.sprites.front_default}
-            handleClick={handleClick}
-            pokemonId={pokemon.id}
-            key={pokemon.id}
-          />
-        ))}
-      </div>
+        <div className="cardContainer">
+          {draw.map((pokemon) => (
+            <Card
+              pokemonName={pokemon.species.name}
+              spriteURL={pokemon.sprites.front_default}
+              handleClick={handleClick}
+              pokemonId={pokemon.id}
+              key={pokemon.id}
+            />
+          ))}
+        </div>
       </>
     );
   } else if (loaded) {
-    return <h1 className="message">You won!</h1>;
+    return (
+      <>
+        <h1 className="message">You won!</h1>
+        <button className="playAgain" onClick={() => setGame(false)}>play again?</button>
+      </>
+    );
   } else {
     return <h1 className="message">Loading...</h1>;
   }
