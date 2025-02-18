@@ -1,3 +1,4 @@
+import '../styles/Menu.css'
 function Menu({startGame, setGen, setDif}) {
   return (
     <div className="menu">
