@@ -10,3 +10,13 @@
 .menu > button{
     justify-self: flex-end;
 }
+.menu > *{
+    font-size: 1.2rem;
+}
+.menu > select > *{
+    font-size: 1.2rem;
+}
+select {
+    font-size: 1.1rem;
+    border: none;
+}

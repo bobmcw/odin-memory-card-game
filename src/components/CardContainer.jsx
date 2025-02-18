@@ -150,7 +150,7 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
   if (gameOver) {
     return (
       <>
-        <h1>Game over</h1>
+        <h1 className="message">Game over</h1>
         <button onClick={() => setGame(false)}>play again?</button>
       </>
     );
@@ -174,9 +174,9 @@ function CardContainer({ difficulty = 0, generation = 1, setGame, setBest, bestS
       </>
     );
   } else if (loaded) {
-    return <h1>You won!</h1>;
+    return <h1 className="message">You won!</h1>;
   } else {
-    return <h1>Loading...</h1>;
+    return <h1 className="message">Loading...</h1>;
   }
 }
 export default CardContainer;

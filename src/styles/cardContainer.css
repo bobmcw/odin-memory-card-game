@@ -7,6 +7,9 @@
     margin-left: 10px;
   width: 100%;
 }
-.scoreCounter {
+.scoreCounter, .message {
+    color: navy;
+    text-shadow: 2px 2px 0 white;
+    font-weight: bold;
     text-align: center;
 }
