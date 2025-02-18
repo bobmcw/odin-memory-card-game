@@ -23,7 +23,7 @@ function App() {
       {game ? (
         <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} bestScore={best} />
       ) : (
-        <Menu startGame={setGame} setDif={setDif} setGen={setGen} />
+        <Menu startGame={setGame} setDif={setDif} setGen={setGen} gen={gen} dif={dif} />
       )}
     </div>
   );

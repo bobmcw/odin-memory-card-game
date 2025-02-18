@@ -1,5 +1,5 @@
 import '../styles/Menu.css'
-function Menu({startGame, setGen, setDif}) {
+function Menu({startGame, setGen, setDif, gen, dif}) {
   return (
     <div className="menu">
       <div className="selectItem">
@@ -8,6 +8,7 @@ function Menu({startGame, setGen, setDif}) {
           name="difficulty"
           id="difficulty"
           onChange={(e) => setDif(e.target.value)}
+          defaultValue={dif}
         >
           <option value="0">easy</option>
           <option value="1">medium</option>
@@ -20,6 +21,7 @@ function Menu({startGame, setGen, setDif}) {
           name="generation"
           id="generation"
           onChange={(e) => setGen(e.target.value)}
+          defaultValue={gen}
         >
           <option value="1">1</option>
           <option value="2">2</option>
