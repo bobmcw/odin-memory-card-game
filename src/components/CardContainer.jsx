@@ -187,7 +187,7 @@ function CardContainer({
     return (
       <>
         <h1 className="message">You won!</h1>
-        <button className="playAgain" onClick={() => setGame(false)}>play again?</button>
+        <button className="playAgain" onClick={() => setGame(false)}>&gt; play again &lt;</button>
       </>
     );
   } else {
