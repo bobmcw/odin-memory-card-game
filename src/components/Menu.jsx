@@ -31,7 +31,7 @@ function Menu({startGame, setGen, setDif}) {
           <option value="8">8</option>
         </select>
       </div>
-      <button onClick={() => startGame(true)}>Go!</button>
+      <button className='go' onClick={() => startGame(true)}>Go!</button>
     </div>
   );
 }
