@@ -167,9 +167,9 @@ function CardContainer({
   } else if (pokemons.length !== 0) {
     return (
       <>
-        <h1 className="scoreCounter">
+        <h2 className="scoreCounter">
           score: {guessed.length} / {difficultyTable[difficulty]}
-        </h1>
+        </h2>
         <div className="cardContainer">
           {draw.map((pokemon) => (
             <Card

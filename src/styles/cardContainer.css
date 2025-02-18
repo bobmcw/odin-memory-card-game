@@ -21,3 +21,6 @@
   color: navy;
   text-shadow: 2px 2px 0 #FFD700;
 }
+.scoreCounter {
+  font-size: 1.9rem;
+}

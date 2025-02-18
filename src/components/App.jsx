@@ -19,7 +19,7 @@ function App() {
   },[best])
   return (
     <div className="game" style={{backgroundImage: `url("${background}")`}}>
-    <p className="bestScore">best score: {best}</p>
+    <h1 className="bestScore">best score: {best}</h1>
       {game ? (
         <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} bestScore={best} />
       ) : (
