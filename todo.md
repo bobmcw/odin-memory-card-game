@@ -5,7 +5,7 @@
     - [x] style the menu
     - [x] style the cards
     - [x] style the card container
-- [ ] add an annimation of the card flipping
+- [x] add an annimation of the card flipping
 - [x] fix a bug where when clicking play again the selects display easy and 1 but the game uses old useStates
 - [ ] add a tutorial
 - [x] make the text more readable
