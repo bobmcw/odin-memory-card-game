@@ -1,4 +1,5 @@
 .menu{
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -7,6 +8,14 @@
     border: 5px solid navy;
     outline: 5px solid black;
     min-width: 200px;
+    padding-top: min(40px,10%);
+}
+.menu > img{
+    align-self: flex-end;
+    cursor: pointer;
+    width: 30px;
+    aspect-ratio: 1/1;
+    filter: brightness(0%);
 }
 .menu > button{
     margin-top: 10%;
@@ -36,4 +45,9 @@ select {
   width: fit-content;
   height: fit-content;
   align-self: center;
+}
+.help{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

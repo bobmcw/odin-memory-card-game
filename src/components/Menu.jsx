@@ -1,7 +1,16 @@
-import '../styles/Menu.css'
-function Menu({startGame, setGen, setDif, gen, dif}) {
+import "../styles/Menu.css";
+import help from "../assets/help.svg";
+function Menu({ startGame, setGen, setDif, gen, dif }) {
   return (
     <div className="menu">
+      <img
+        src={help}
+        className="help"
+        alt="help"
+        onClick={() => {
+          document.querySelector(".screenCover").classList.remove("hidden");
+        }}
+      />
       <div className="selectItem">
         <label htmlFor="difficulty">difficulty</label>
         <select
@@ -33,7 +42,9 @@ function Menu({startGame, setGen, setDif, gen, dif}) {
           <option value="8">8</option>
         </select>
       </div>
-      <button className='go' onClick={() => startGame(true)}>Go!</button>
+      <button className="go" onClick={() => startGame(true)}>
+        Go!
+      </button>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Menu from "./Menu";
 import "../styles/App.css";
 import background from "../assets/background.jpg"
 import { useEffect, useState } from "react";
+import Tutorial from "./Tutorial";
 function App() {
   const [dif, setDif] = useState(0);
   const [gen, setGen] = useState(1);
@@ -19,6 +20,7 @@ function App() {
   },[best])
   return (
     <div className="game" style={{backgroundImage: `url("${background}")`}}>
+      <Tutorial />
     <h1 className="bestScore">best score: {best}</h1>
       {game ? (
         <CardContainer setGame={setGame} difficulty={dif} generation={gen} setBest={setBest} bestScore={best} />
