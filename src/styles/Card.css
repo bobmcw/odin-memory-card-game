@@ -63,7 +63,6 @@ div[class=card]{
   object-fit: contain;
   /* max-width: 96px; */
 }
-.card > .name {
-  justify-self: flex-end;
+.name {
   font-size: 1.5rem;
 }
