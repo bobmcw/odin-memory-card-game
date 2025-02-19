@@ -4,11 +4,14 @@ import "../styles/App.css";
 import background from "../assets/background.jpg"
 import { useEffect, useState } from "react";
 import Tutorial from "./Tutorial";
+import cardBack from "../assets/cardBack.jpeg"
 function App() {
   const [dif, setDif] = useState(0);
   const [gen, setGen] = useState(1);
   const [game, setGame] = useState(false);
   const [best, setBest] = useState(0);
+  const cardBack = new Image();
+  cardBack.src = cardBack;
   useEffect(() => {
     const bestScore = localStorage.getItem("bestScore");
     if(bestScore != 0){
