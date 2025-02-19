@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PulseLoader } from "react-spinners";
+import cardReverse from "../assets/cardBack.jpeg"
 import "../styles/Card.css";
 function Card({ pokemonName, spriteURL, handleClick, pokemonId }) {
   const [loaded, setLoaded] = useState(false);
@@ -25,8 +26,7 @@ function Card({ pokemonName, spriteURL, handleClick, pokemonId }) {
           />
           <p className="name">{pokemonName}</p>
         </div>
-        <div className="cardBack">
-            <h1>back</h1>
+        <div className="cardBack" style={{backgroundImage: `url("${cardReverse}")`}}>
         </div>
       </div>
     </div>

@@ -56,7 +56,9 @@ div[class=card]{
     background-color: white;
 }
 .cardBack{
-    background-color: red;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .card > img {
   aspect-ratio: 1/1;
