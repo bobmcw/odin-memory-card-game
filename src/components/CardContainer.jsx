@@ -108,7 +108,10 @@ function CardContainer({
         ...previousGuessed,
         pokemons.find((pokemon) => pokemon.id === id),
       ]);
-      setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
+      document.querySelectorAll(".card").forEach((card) => card.classList.add("flip"))
+      setTimeout(() => {
+        setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
+      }, 700);
     }
   }
   function preloadImages() {
@@ -147,6 +150,7 @@ function CardContainer({
     drawCards(5);
     console.log(pokemons);
     console.log(guessed);
+    document.querySelectorAll(".card").forEach((card) => card.classList.remove("flip"))
   }, [pokemons]);
   useEffect(() => {
     preloadImages();

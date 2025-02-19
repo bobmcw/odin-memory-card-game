@@ -15,9 +15,20 @@ function Card({ pokemonName, spriteURL, handleClick, pokemonId }) {
         }
       }}
     >
-      {!loaded ? <PulseLoader size={8} /> : ""}
-      <img src={spriteURL} alt={pokemonName} onLoad={() => setLoaded(true)} />
-      <p className="name">{pokemonName}</p>
+      <div className="cardInner">
+        <div className="cardFront">
+          {!loaded ? <PulseLoader size={8} /> : ""}
+          <img
+            src={spriteURL}
+            alt={pokemonName}
+            onLoad={() => setLoaded(true)}
+          />
+          <p className="name">{pokemonName}</p>
+        </div>
+        <div className="cardBack">
+            <h1>back</h1>
+        </div>
+      </div>
     </div>
   );
 }
